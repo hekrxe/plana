@@ -1,0 +1,6 @@
+1，git init
+2，git add .
+3，git commit -m 'init'
+4，git remote add origin https://github.com/hekrxe/plana.git
+5, git branch --set-upstream-to origin/master master
+6，git push
