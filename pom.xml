@@ -12,6 +12,8 @@
         <module>minor</module>
         <module>data</module>
     </modules>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>

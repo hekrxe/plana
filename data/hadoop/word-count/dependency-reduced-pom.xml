@@ -40,8 +40,8 @@
     </plugins>
   </build>
   <properties>
-    <main.class>com.hekrxe.hadoop.mr.FileOperation</main.class>
-    <jar.name>FileOperation</jar.name>
+    <main.class>com.hekrxe.hadoop.mr.Average</main.class>
+    <jar.name>Average</jar.name>
   </properties>
 </project>
 
