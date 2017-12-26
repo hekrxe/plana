@@ -9,10 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>data</artifactId>
+    <artifactId>fromwork</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>hadoop</module>
+        <module>hive</module>
+        <module>hbase</module>
+        <module>zk</module>
+        <module>mybatis</module>
     </modules>
 
 
