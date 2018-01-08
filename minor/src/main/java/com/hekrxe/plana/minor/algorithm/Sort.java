@@ -8,13 +8,28 @@ import java.util.Random;
  */
 public class Sort {
 
+
+    private static void display(int[] array) {
+        for (int e : array) {
+            System.out.print(e + "\t,");
+        }
+        System.out.println();
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        arr[i] = arr[i] ^ arr[j];
+        arr[j] = arr[i] ^ arr[j];
+        arr[i] = arr[i] ^ arr[j];
+    }
+
+
     /**
      * 分成两部分,前部分已经排好序,后半部分是待排序的,那么只需依次将后半部分数据找到正确的位置即可
      *
      * @param array 待排序数组
      */
     public static void insertSort(int[] array) {
-        if (null == array || array.length <= 0) {
+        if (null == array || array.length <= 1) {
             return;
         }
         int i;
@@ -37,7 +52,7 @@ public class Sort {
      * @param array array
      */
     public static void shellInsertSort(int[] array) {
-        if (null == array || array.length <= 0) {
+        if (null == array || array.length <= 1) {
             return;
         }
         int countOfGroup = array.length >>> 1;
@@ -64,21 +79,166 @@ public class Sort {
         }
     }
 
-    private static void display(int[] array) {
-        for (int e : array) {
-            System.out.print(e + ",\t");
+    public static void bubbleSort(int[] array) {
+        if (null == array || array.length <= 1) {
+            return;
         }
-        System.out.println();
+        for (int i = 0; i < array.length - 1; ++i) {
+            for (int j = 0; j < array.length - i - 1; ++j) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j + 1, j);
+                }
+            }
+        }
     }
 
-    private static void swap(int[] arr, int i, int j) {
-        arr[i] = arr[i] ^ arr[j];
-        arr[j] = arr[i] ^ arr[j];
-        arr[i] = arr[i] ^ arr[j];
+    private static int shuffleIndex(int[] array, int start, int end) {
+        int tmp = array[start];
+        while (start < end) {
+            while (start < end && array[end] >= tmp) {
+                end--;
+            }
+            array[start] = array[end];
+
+            while (start < end && array[start] <= tmp) {
+                start++;
+            }
+            array[end] = array[start];
+        }
+        array[start] = tmp;
+        return start;
+    }
+
+    private static void quickSort(int[] array, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int mid = shuffleIndex(array, start, end);
+        quickSort(array, start, mid - 1);
+        quickSort(array, mid + 1, end);
+    }
+
+    public static void quickSort(int[] array) {
+        if (null == array || array.length <= 1) {
+            return;
+        }
+
+        quickSort(array, 0, array.length - 1);
+    }
+
+    public static void selectorSort(int[] array) {
+        if (null == array || array.length <= 1) {
+            return;
+        }
+        for (int i = 0; i < array.length; ++i) {
+            int min = i;
+            for (int j = i + 1; j < array.length; ++j) {
+                if (array[min] > array[j]) {
+                    min = j;
+                }
+            }
+            if (min != i) {
+                swap(array, min, i);
+            }
+        }
+    }
+
+    private static void adjustHeap(int[] array, int root, int length) {
+        int min = root;
+        do {
+            root = min;
+            int left = root * 2 + 1;
+            int right = left + 1;
+            if (left < length && array[left] < array[min]) {
+                min = left;
+            }
+            if (right < length && array[right] < array[min]) {
+                min = right;
+            }
+            if (min != root) {
+                swap(array, min, root);
+            }
+        } while (min != root);
+    }
+
+    public static void heapSort(int[] array) {
+        if (null == array || array.length <= 1) {
+            return;
+        }
+
+        for (int i = array.length / 2 - 1; i >= 0; --i) {
+            adjustHeap(array, i, array.length);
+        }
+
+        for (int i = array.length - 1; i > 0; --i) {
+            swap(array, i, 0);
+            adjustHeap(array, 0, i);
+        }
+    }
+
+    /**
+     * 将两组有序的数进行排序
+     */
+    public static void mergeSort(int[] array, int start, int end) {
+        if (null == array || start >= end) {
+            return;
+        }
+        int mid = (start + end) / 2;
+        mergeSort(array, start, mid);
+        mergeSort(array, mid + 1, end);
+
+        // 到此 start-mid有序 mid+1 - end有序
+        // 将此连续的两段合并
+        int preStart = start;
+        int preEnd = mid;
+        int lastStart = mid + 1;
+        int lastEnd = end;
+        int[] newArray = new int[end - start + 1];
+
+        int oldStart = preStart;
+        int newArrayIndex = 0;
+        while (preStart <= preEnd && lastStart <= lastEnd) {
+            newArray[newArrayIndex++] = array[preStart] < array[lastStart] ? array[preStart++] : array[lastStart++];
+        }
+        while (preStart <= preEnd) {
+            newArray[newArrayIndex++] = array[preStart++];
+        }
+        while (lastStart <= lastEnd) {
+            newArray[newArrayIndex++] = array[lastStart++];
+        }
+
+        // 重新赋值
+        for (int i = 0; i < newArrayIndex; ++i) {
+            array[oldStart++] = newArray[i];
+        }
+    }
+
+    public static void countSort(int[] array) {
+        if (null == array || array.length <= 1) {
+            return;
+        }
+        int max = array[0];
+        for (int e : array) {
+            if (max < e) {
+                max = e;
+            }
+        }
+        // count[i] 表示 i出现的次数
+        int[] count = new int[max + 1];
+        for (int e : array) {
+            count[e]++;
+        }
+        int index = 0;
+        for (int i = 0; i <= max; ++i) {
+            int cnt = count[i];
+            while (cnt-- > 0) {
+                array[index++] = i;
+            }
+        }
     }
 
     public static void main(String[] args) {
-        int size = 13;
+        int size = 30;
         Random random = new Random();
         int[] array = new int[size];
 
@@ -87,9 +247,8 @@ public class Sort {
         }
         display(array);
         long now = System.currentTimeMillis();
-        shellInsertSort(array);
+        countSort(array);
         System.out.println(System.currentTimeMillis() - now);
         display(array);
-
     }
 }
