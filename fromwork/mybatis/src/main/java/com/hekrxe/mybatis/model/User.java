@@ -1,13 +1,14 @@
-package com.hekrxe.mybatis.ch1.model;
+package com.hekrxe.mybatis.model;
 
 /**
- * @author hztanhuayou
- * @date 2017/12/4
+ * User: tanhuayou
+ * Date: 2018/4/5
  */
 public class User {
     private Long id;
     private String name;
     private Integer age;
+    private String password;
 
     public Long getId() {
         return id;
@@ -36,12 +37,12 @@ public class User {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
     }
 }
