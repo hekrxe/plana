@@ -28,7 +28,6 @@ public class Main {
         System.out.println("insert: " + insert);
 
         sqlSession.commit();
-
         sqlSession.close();
 
     }
