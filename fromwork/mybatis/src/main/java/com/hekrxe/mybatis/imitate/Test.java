@@ -17,5 +17,6 @@ public class Test {
         User user = new User().setName("name").setAge(1212).setPassword("asdas");
         Integer insert = userDAO.insert(user);
         System.out.println("返回值：" + insert);
+
     }
 }
