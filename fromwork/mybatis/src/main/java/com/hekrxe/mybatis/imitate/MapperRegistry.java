@@ -1,0 +1,32 @@
+package com.hekrxe.mybatis.imitate;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * User: tanhuayou
+ * Date: 2018/4/6
+ */
+// 这个对象只会被
+public class MapperRegistry {
+    private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<>();
+
+    public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
+        final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers.get(type);
+        if (mapperProxyFactory == null) {
+            throw new UnsupportedOperationException("Type " + type + " is not known to the MapperRegistry.");
+        }
+        try {
+            return mapperProxyFactory.newInstance(sqlSession);
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Error getting mapper instance. Cause: " + e, e);
+        }
+    }
+
+
+    public <T> void addMapper(Class<T> type) {
+        if (type.isInterface()) {
+            knownMappers.put(type, new MapperProxyFactory<T>(type));
+        }
+    }
+}
