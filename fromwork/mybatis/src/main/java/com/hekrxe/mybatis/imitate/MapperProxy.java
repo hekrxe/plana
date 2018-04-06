@@ -26,6 +26,7 @@ public class MapperProxy<T> implements InvocationHandler {
         System.out.println("其接口是：" + mapperInterface.getName());
         System.out.println(mapperInterface.getName() + "." + method.getName() + ": 是一个id,用于到对应的mapper.xml文件中得到具体的SQL语句");
         Object result = new MapperMethod(mapperInterface, sqlSession).execute();
+        System.out.println("真正的执行结果： " + result);
         // TODO 返回值是上面这一行代码的返回值。 这里这样返回是为了不出现 NPE
         return method.getReturnType().getConstructor(int.class).newInstance(999);
     }

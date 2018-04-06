@@ -14,7 +14,6 @@ public class MapperMethod {
         this.sqlSession = sqlSession;
     }
 
-    // 解析并执行 sql
     public Object execute() {
         System.out.println("执行 SQL语句。");
         return null;
