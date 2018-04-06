@@ -10,16 +10,10 @@ import java.util.Map;
 public class MapperRegistry {
     private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<>();
 
+    @SuppressWarnings("unchecked")
     public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
         final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers.get(type);
-        if (mapperProxyFactory == null) {
-            throw new UnsupportedOperationException("Type " + type + " is not known to the MapperRegistry.");
-        }
-        try {
-            return mapperProxyFactory.newInstance(sqlSession);
-        } catch (Exception e) {
-            throw new UnsupportedOperationException("Error getting mapper instance. Cause: " + e, e);
-        }
+        return mapperProxyFactory.newInstance(sqlSession);
     }
 
 
