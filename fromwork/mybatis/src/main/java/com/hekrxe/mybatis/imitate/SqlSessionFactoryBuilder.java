@@ -14,6 +14,8 @@ public class SqlSessionFactoryBuilder {
 
 
     public SqlSessionFactory build() {
+        System.out.println("SqlSessionFactoryBuilder build,一般来说，只会在应用程序启动的时候初始化一次，此过程是加载并解析MyBatis的配置文件的过程");
+
         // 即是解析配置文件的过程
         registry.addMapper(UserDAO.class);
         return new SqlSessionFactory(registry);

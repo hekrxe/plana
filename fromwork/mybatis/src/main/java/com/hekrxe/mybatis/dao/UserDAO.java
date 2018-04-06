@@ -8,7 +8,7 @@ import com.hekrxe.mybatis.model.User;
  */
 public interface UserDAO {
 
-    int insert(User user);
+    Integer insert(User user);
 
     User queryById(Long id);
 }

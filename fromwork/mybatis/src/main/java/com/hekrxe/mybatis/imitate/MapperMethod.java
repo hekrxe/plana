@@ -1,6 +1,7 @@
 package com.hekrxe.mybatis.imitate;
 
 /**
+ * MapperMethod 是对JDBC的封装
  * User: tanhuayou
  * Date: 2018/4/6
  */
@@ -15,8 +16,7 @@ public class MapperMethod {
 
     // 解析并执行 sql
     public Object execute() {
-        System.out.println(mapperInterface.getName());
-        System.out.println(sqlSession.getClass().getName());
+        System.out.println("执行 SQL语句。");
         return null;
     }
 }
