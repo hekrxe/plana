@@ -12,6 +12,7 @@ public class MapperProxyFactory<T> {
 
     public MapperProxyFactory(Class<T> mapperInterface) {
         this.mapperInterface = mapperInterface;
+        System.out.println("一个 MapperProxyFactory 被创建，服务于接口 " + mapperInterface.getName());
     }
 
     @SuppressWarnings("unchecked")
