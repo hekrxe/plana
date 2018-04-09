@@ -18,7 +18,7 @@ public class TreeArray {
     }
 
     public static void main(String[] args) {
-        for (int i = 1; i <= 32; ++i) {
+        for (int i = -32; i <= 32; ++i) {
             System.out.println(i + "\t" + Integer.toBinaryString(lowBit(i)));
         }
 
