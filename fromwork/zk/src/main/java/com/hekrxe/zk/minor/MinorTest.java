@@ -106,6 +106,7 @@ public class MinorTest {
         System.out.println(new String(bytes));
 
         Stat stat = client.checkExists().forPath("/a/b");
+        
         System.out.println(stat);
     }
 }

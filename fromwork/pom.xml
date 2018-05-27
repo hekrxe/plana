@@ -17,6 +17,8 @@
         <module>hbase</module>
         <module>zk</module>
         <module>mybatis</module>
+        <module>spring-boot-2x</module>
+        <module>dubbo</module>
     </modules>
 
 
