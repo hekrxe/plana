@@ -12,10 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringLifeCycle implements ApplicationListener<ContextRefreshedEvent>, InitializingBean {
 
+    @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("afterPropertiesSet");
     }
 
+    @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         System.out.println("onApplicationEvent");
     }

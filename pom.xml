@@ -11,6 +11,7 @@
     <modules>
         <module>minor</module>
         <module>fromwork</module>
+        <module>agent</module>
     </modules>
     <properties>
         <!--base-->
@@ -28,10 +29,6 @@
         <!--lang-->
         <java.version>1.8</java.version>
         <scala.version>2.12.2</scala.version>
-
-        <mybatis.version>3.3.1</mybatis.version>
-        <mysql.driver.version>5.1.29</mysql.driver.version>
-
     </properties>
 
     <dependencyManagement>
@@ -45,16 +42,6 @@
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-compiler</artifactId>
                 <version>${scala.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.driver.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
