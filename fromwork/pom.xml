@@ -20,6 +20,8 @@
         <module>spring-boot-2x</module>
         <module>dubbo</module>
         <module>netty</module>
+        <module>akka</module>
+        <module>sofa</module>
     </modules>
 
 

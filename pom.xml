@@ -12,6 +12,7 @@
         <module>minor</module>
         <module>fromwork</module>
         <module>agent</module>
+        <module>mesh</module>
     </modules>
     <properties>
         <!--base-->
@@ -28,7 +29,7 @@
 
         <!--lang-->
         <java.version>1.8</java.version>
-        <scala.version>2.12.2</scala.version>
+        <scala.version>2.12.6</scala.version>
     </properties>
 
     <dependencyManagement>
@@ -45,17 +46,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-compiler</artifactId>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>

@@ -9,33 +9,27 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>netty</artifactId>
+    <artifactId>sofa</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>classic</module>
-        <module>http</module>
-        <module>in-action</module>
+        <module>service</module>
+        <module>api</module>
+        <module>sofa-consumer</module>
     </modules>
 
     <properties>
-        <netty.version>4.1.24.Final</netty.version>
+        <sofa-rpc-all-version>5.3.2</sofa-rpc-all-version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-all</artifactId>
-                <version>${netty.version}</version>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-rpc-all</artifactId>
+                <version>${sofa-rpc-all-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

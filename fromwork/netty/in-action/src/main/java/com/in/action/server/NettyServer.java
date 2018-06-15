@@ -1,6 +1,6 @@
-package com.dubbo.study.transport.server;
+package com.in.action.server;
 
-import com.dubbo.study.transport.TransportConfig;
+import com.in.action.TransportConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.Channel;
@@ -16,8 +16,6 @@ import io.netty.channel.socket.ServerSocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import io.netty.util.internal.SystemPropertyUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
 
@@ -26,7 +24,6 @@ import java.util.Locale;
  * Date: 2018/5/25
  */
 public class NettyServer {
-    private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);
 
     private static final String NAME_LINUX = "linux";
     private static final String NAME_MAC = "mac";
@@ -88,7 +85,7 @@ public class NettyServer {
             try {
                 bossChannel.close().sync();
             } catch (InterruptedException e) {
-                logger.warn(e.getMessage(), e);
+                e.printStackTrace();
             }
         }
         if (null != bootstrap) {
