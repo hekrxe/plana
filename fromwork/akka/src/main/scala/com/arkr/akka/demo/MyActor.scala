@@ -1,9 +1,9 @@
 package com.arkr.akka.demo
 
 import akka.actor.FSM.{Transition, State => _}
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
+import akka.actor.{Actor, ActorSystem, Props}
 import akka.event.Logging
-import com.arkr.akka.fsm.{Active, Batch, Idle, State}
+import com.arkr.akka.fsm.Batch
 
 /**
   * User: tanhuayou  
@@ -21,6 +21,15 @@ class MyActor extends Actor {
       logger.info(s"$ref,$from,$to")
     //    case t: Transition[State] => // 这样写 jvm 会做类型擦除
     //      logger.info(s"${t.fsmRef},${t.from},${t.to}")
+    case x: Any =>
+      val hi = context.system.settings.config.getString("you.self.config.hi")
+      println(hi)
+
+      val nihao = context.system.settings.config.getString("you.self.config.nihao")
+      println(nihao)
+
+
+      println(Thread.currentThread().getName + s"--$x")
   }
 
 }
