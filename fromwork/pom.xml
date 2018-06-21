@@ -22,6 +22,7 @@
         <module>netty</module>
         <module>akka</module>
         <module>sofa</module>
+        <module>guava</module>
     </modules>
 
 

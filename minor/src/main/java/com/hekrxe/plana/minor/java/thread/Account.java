@@ -8,7 +8,9 @@ import java.util.concurrent.locks.ReentrantLock;
  * Date: 2018/5/26
  */
 public class Account {
-    private volatile int balance = 1000000;
+    // volatile 关键字修饰的字段 不要依赖于原值 不建议 -= += 等操作
+
+    private int balance = 1000000;
     private ReentrantLock lock = new ReentrantLock();
 
     public boolean deduction(int money) {
