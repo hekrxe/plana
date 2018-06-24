@@ -17,11 +17,13 @@ object SeedNode extends App {
   ).withFallback(ConfigFactory.load())
   val actorSystem = ActorSystem("SystemCluster", config)
 
-  Cluster(actorSystem).join(Address(
-    protocol = "akka.tcp",
-    system = "SystemCluster",
-    host = "127.0.0.1", // self
-    port = port)
+  Cluster(actorSystem).join(
+    Address(
+      protocol = "akka.tcp",
+      system = "SystemCluster",
+      host = "0.0.0.0", // self
+      port = port
+    )
   )
   actorSystem.actorOf(Props[SimpleClusterListener], name = "clusterListener")
   println("SeedNode Ready")
@@ -36,12 +38,44 @@ object ClusterNode extends App {
   ).withFallback(ConfigFactory.load())
   val actorSystem = ActorSystem("SystemCluster", config)
   Cluster(actorSystem).joinSeedNodes(List(
-    Address(protocol = "akka.tcp",
+    Address(
+      protocol = "akka.tcp",
       system = "SystemCluster",
-      host = "127.0.0.1", // remote
+      host = "0.0.0.0", // remote
       port = 6767 // remote
     )
   ))
   actorSystem.actorOf(Props[SimpleClusterListener], name = "clusterListener")
   println("ClusterNode Ready")
+}
+
+object Client extends App {
+
+  val port = 26767
+  val config = ConfigFactory.parseString(
+    s"""
+    akka.remote.netty.tcp.port=$port
+  """
+  ).withFallback(ConfigFactory.load("client.application.conf"))
+  val actorSystem = ActorSystem("SystemCluster", config)
+  Cluster(actorSystem).joinSeedNodes(List(
+    Address(
+      protocol = "akka.tcp",
+      system = "SystemCluster",
+      host = "0.0.0.0", // remote
+      port = 6767 // remote
+    )
+  ))
+
+  import actorSystem.dispatcher
+
+  import scala.concurrent.duration._
+  import scala.language.postfixOps
+
+  val clusterListener = actorSystem.actorOf(Props[ClientActor], name = "ClientActor")
+
+  actorSystem.scheduler.schedule(2 seconds, 2 seconds) {
+    clusterListener ! s"hello-${System.currentTimeMillis()}"
+  }
+
 }
