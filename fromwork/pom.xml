@@ -23,6 +23,7 @@
         <module>akka</module>
         <module>sofa</module>
         <module>guava</module>
+        <module>akka-remote</module>
     </modules>
 
 
