@@ -24,6 +24,7 @@
         <module>sofa</module>
         <module>guava</module>
         <module>akka-remote</module>
+        <module>akka-cluster</module>
     </modules>
 
 

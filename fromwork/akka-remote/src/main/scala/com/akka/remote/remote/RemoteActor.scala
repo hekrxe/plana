@@ -14,7 +14,7 @@ class RemoteActor extends Actor {
   val logger = Logging(context.system, this)
 
   override def preStart(): Unit = {
-    logger.info("RemoteActor Created!")
+    logger.info(s"RemoteActor Created! ${self.path}")
     super.preStart()
   }
 
