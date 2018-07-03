@@ -3,3 +3,7 @@ server:
 
 customer:
   key: 2333
+
+spring:
+  aop:
+    proxy-target-class: true # 使用cglib代理
