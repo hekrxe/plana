@@ -1,7 +1,7 @@
 package com.in.action.client.handler;
 
+import com.in.action.codec.Pack;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
@@ -14,10 +14,47 @@ public class EchoHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        for (int i = 0; i < 3; ++i) {
-            ctx.writeAndFlush(Unpooled.copiedBuffer(random()));
-            Thread.sleep(10000);
-        }
+        Pack pack = new Pack();
+        pack.setCmd((short) 12);
+        pack.setBody(("hi Pack!hi Pack!hi Pack!hi " +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi" +
+                " Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi " +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi" +
+                " Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi " +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi" +
+                " Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi " +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi" +
+                " Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi " +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi" +
+                " Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi " +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi" +
+                " Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi " +
+                "Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!hi Pack!" +
+                "hi Pack!").getBytes());
+        ctx.writeAndFlush(pack);
     }
 
     @Override

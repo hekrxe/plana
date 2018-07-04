@@ -1,8 +1,7 @@
 package com.in.action.server;
 
-import com.in.action.codec.ToIntDecoder;
+import com.in.action.codec.CodecAdapter;
 import com.in.action.server.handler.EchoHandler;
-import com.in.action.server.handler.IntHandler;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 
@@ -11,11 +10,12 @@ import io.netty.channel.ChannelInitializer;
  * Date: 2018/5/25
  */
 public class ServerChannelInitializer extends ChannelInitializer {
-    private static final IntHandler intHandler = new IntHandler();
+    private final EchoHandler handler = new EchoHandler();
 
     @Override
     protected void initChannel(Channel ch) throws Exception {
-        ch.pipeline().addLast(new ToIntDecoder())
-                .addLast(intHandler);
+        ch.pipeline()
+                .addLast("CodecAdapter", new CodecAdapter())
+                .addLast(handler);
     }
 }
