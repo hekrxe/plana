@@ -1,16 +1,14 @@
 package com.in.action.client.handler;
 
 import com.in.action.codec.Pack;
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.util.CharsetUtil;
 
 /**
  * User: tanhuayou
  * Date: 2018/6/8
  */
-public class EchoHandler extends SimpleChannelInboundHandler<ByteBuf> {
+public class EchoHandler extends SimpleChannelInboundHandler<Pack> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -58,8 +56,9 @@ public class EchoHandler extends SimpleChannelInboundHandler<ByteBuf> {
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf in) throws Exception {
-        System.out.println(in.toString(CharsetUtil.UTF_8));
+    protected void channelRead0(ChannelHandlerContext ctx, Pack pack) throws Exception {
+        System.out.println("channelRead0 cmd=[" + pack.getCmd() + "]");
+        System.out.println("channelRead0 body=[" + new String(pack.getBody()) + "]");
     }
 
     private byte[] random() {

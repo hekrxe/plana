@@ -25,6 +25,7 @@
         <module>guava</module>
         <module>akka-remote</module>
         <module>akka-cluster</module>
+        <module>kafka</module>
     </modules>
 
 
