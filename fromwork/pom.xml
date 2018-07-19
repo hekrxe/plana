@@ -26,6 +26,7 @@
         <module>akka-remote</module>
         <module>akka-cluster</module>
         <module>kafka</module>
+        <module>es</module>
     </modules>
 
 
