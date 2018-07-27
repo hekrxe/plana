@@ -10,7 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>minor</module>
-        <module>fromwork</module>
+        <module>framework</module>
         <module>agent</module>
         <module>mesh</module>
         <module>chime</module>
