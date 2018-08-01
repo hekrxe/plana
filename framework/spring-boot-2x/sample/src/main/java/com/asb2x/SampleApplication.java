@@ -7,6 +7,10 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * User: tanhuayou
@@ -19,7 +23,9 @@ public class SampleApplication implements EnvironmentAware {
 
     @RequestMapping("/")
     @ResponseBody
-    String home() {
+    String home(HttpServletRequest request) {
+        Object attribute = request.getAttribute(DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+
         return "Hello World!";
     }
 
@@ -28,6 +34,7 @@ public class SampleApplication implements EnvironmentAware {
     }
 
 
+    @Override
     public void setEnvironment(Environment environment) {
         this.environment = environment;
         String resolvePlaceholders = environment.resolvePlaceholders("hi ${customer.key}");

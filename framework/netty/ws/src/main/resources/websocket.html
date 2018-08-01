@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset = utf-8"/>
+    <title>WS</title>
+    <script type="text/javascript">
+        var socket;
+        if (!window.WebSocket) {
+            window.WebSocket = window.MozWebSocket;
+        }
+        if (window.WebSocket) {
+            socket = new WebSocket("ws://localhost:6767/websocket");
+            socket.onmessage = function (ev) {
+                var ta = document.getElementById("responseContent");
+                ta.value += ev.data + "\r\n";
+            };
+
+            socket.onopen = function (ev) {
+                var ta = document.getElementById("responseContent");
+                ta.value = "continue";
+            };
+
+            socket.onclose = function (ev) {
+                var ta = document.getElementById("responseContent");
+                ta.value = "";
+                ta.value = "closed!\r\n";
+            }
+
+
+        } else {
+            alert("unsupported socket!")
+        }
+
+        function send(message) {
+            if (!window.WebSocket) {
+                return;
+            }
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send(message);
+            } else {
+                alert("disconnection")
+            }
+        }
+
+    </script>
+</head>
+<body>
+<form onsubmit=" return false">
+    <input type="text" name="message" value="" title="msg"/>
+    <input type="button" value="send" onclick="send(this.form.message.value)"/>
+    <br/><br/>
+    <hr color="red"/>
+    <h3>all messages：</h3>
+    <textarea id="responseContent" style="width: 1024px;height: 300px;" title="all messages"></textarea>
+</form>
+
+</body>
+</html>

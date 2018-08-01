@@ -27,7 +27,6 @@
         <module>akka-cluster</module>
         <module>kafka</module>
         <module>es</module>
-        <module>mvc</module>
     </modules>
 
 

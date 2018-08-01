@@ -15,6 +15,7 @@
         <module>classic</module>
         <module>http</module>
         <module>in-action</module>
+        <module>ws</module>
     </modules>
 
     <properties>
