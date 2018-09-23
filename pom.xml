@@ -17,6 +17,15 @@
     </modules>
     <repositories>
         <repository>
+            <id>spring-libs-release</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
             <id>netease-release</id>
             <name>netease-releases</name>
             <url>http://mvn.hz.netease.com/artifactory/libs-releases</url>

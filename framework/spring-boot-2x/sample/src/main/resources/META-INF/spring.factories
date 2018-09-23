@@ -1,0 +1,24 @@
+# PropertySource Loaders
+org.springframework.boot.env.PropertySourceLoader=
+
+# Run Listeners
+org.springframework.boot.SpringApplicationRunListener=
+
+# Error Reporters
+org.springframework.boot.SpringBootExceptionReporter=
+
+# Application Context Initializers
+org.springframework.context.ApplicationContextInitializer=\
+com.asb2x.appctxinit.MyApplicationContextInitializer
+
+# Application Listeners
+org.springframework.context.ApplicationListener=
+
+# Environment Post Processors
+org.springframework.boot.env.EnvironmentPostProcessor=
+
+# Failure Analyzers
+org.springframework.boot.diagnostics.FailureAnalyzer=
+
+# FailureAnalysisReporters
+org.springframework.boot.diagnostics.FailureAnalysisReporter=

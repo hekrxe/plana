@@ -18,7 +18,7 @@
 
             socket.onopen = function (ev) {
                 var ta = document.getElementById("responseContent");
-                ta.value = "continue";
+                ta.value = "continue\r\n";
             };
 
             socket.onclose = function (ev) {

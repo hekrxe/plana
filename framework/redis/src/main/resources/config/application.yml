@@ -1,0 +1,22 @@
+server:
+  port: 6767
+
+
+spring:
+  aop:
+    proxy-target-class: true # 使用cglib代理
+
+#  redis:
+#    database: 0
+#    host: 127.0.0.1
+#    port: 6379
+#    password:
+#    jedis:
+#      pool:
+#        max-active: 8
+#        #最大阻塞等待时间(负数表示没限制)
+#        max-wait: -1
+#        max-idle: 8
+#        min-idle: 0
+#    #连接超时时间
+#    timeout: 10000

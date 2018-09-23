@@ -7,3 +7,7 @@ customer:
 spring:
   aop:
     proxy-target-class: true # 使用cglib代理
+
+
+
+helloPlaceholder: 1212121
