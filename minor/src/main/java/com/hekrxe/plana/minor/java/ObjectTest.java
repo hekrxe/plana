@@ -39,7 +39,7 @@ public class ObjectTest {
                 public void run() {
                     System.out.println(j + " start");
                     try {
-                        synchronized (monitor) { // 拥有此对象(monitor)的锁(monitor)
+                        synchronized (monitor) { // 拥有此对象的锁(monitor)
                             monitor.wait(); // 才能使用
                             System.out.println(j + " end");
                             sum1[0]++;

@@ -4,7 +4,7 @@ package com.hekrxe.plana.minor.java;
  * User: tanhuayou
  * Date: 2018/6/20
  */
-public class FinalyTest {
+public class FinallyTest {
     public static void main(String[] args) {
         System.out.println(test());
     }
