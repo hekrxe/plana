@@ -16,6 +16,13 @@ public class Sort {
         System.out.println();
     }
 
+    private static void display(int[] array, int i, int j) {
+        for (int c = i; c <= j; ++c) {
+            System.out.print(array[c] + "\t,");
+        }
+        System.out.println();
+    }
+
     private static void swap(int[] arr, int i, int j) {
         arr[i] = arr[i] ^ arr[j];
         arr[j] = arr[i] ^ arr[j];
@@ -92,6 +99,32 @@ public class Sort {
         }
     }
 
+    private static int partition(int[] array, int left, int right) {
+        // mid 将数组分成了两个分区
+        // mid后的都是大的
+        // mid(包括)前的是小的
+        int mid = left - 1;
+
+        // 以right为哨兵
+        for (int i = left; i < right; ++i) {
+            if (array[i] < array[right]) {
+                // 那么找一个大于哨兵的值和第i个交换
+                ++mid;
+                if (i != mid) {
+                    swap(array, i, mid);
+                }
+            }
+        }
+
+        ++mid;
+        if (mid != right) {
+            // 说明 此时的mid大于right
+            swap(array, mid, right);
+        }
+
+        return mid;
+    }
+
     private static int shuffleIndex(int[] array, int start, int end) {
         int tmp = array[start];
         while (start < end) {
@@ -113,7 +146,7 @@ public class Sort {
         if (start >= end) {
             return;
         }
-        int mid = shuffleIndex(array, start, end);
+        int mid = partition(array, start, end);
         quickSort(array, start, mid - 1);
         quickSort(array, mid + 1, end);
     }
@@ -246,9 +279,12 @@ public class Sort {
             array[i] = Math.abs(random.nextInt() % 100);
         }
         display(array);
-        long now = System.currentTimeMillis();
-        countSort(array);
-        System.out.println(System.currentTimeMillis() - now);
+        int partition = partition(array, 0, array.length - 1);
+        display(array);
+        display(array, 0, partition);
+        display(array, partition + 1, array.length - 1);
+
+        quickSort(array);
         display(array);
     }
 }

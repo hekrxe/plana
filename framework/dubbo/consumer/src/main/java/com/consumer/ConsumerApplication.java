@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsumerApplication {
 
     @Reference
-    private HelloService demoService;
+    public HelloService demoService;
 
     @RequestMapping("/sayHello")
     public String sayHello(@RequestParam String name) {
