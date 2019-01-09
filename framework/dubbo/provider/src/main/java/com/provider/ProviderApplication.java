@@ -1,7 +1,8 @@
 package com.provider;
 
-import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
-import com.services.config.EnableDubboProvider;
+import com.provider.test.Action;
+import com.provider.test.Service1;
+import com.provider.test.Service2;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -17,11 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
-@EnableDubboProvider
-@DubboComponentScan(basePackageClasses = {ProviderApplication.class})
+//@EnableDubboProvider
+//@DubboComponentScan(basePackageClasses = {ProviderApplication.class})
 public class ProviderApplication implements InitializingBean {
     @Autowired
     ApplicationContext applicationContext;
+
+    @Autowired
+    private Service1 service1;
+    @Autowired
+    private Service2 service2;
+    @Autowired
+    private Action action;
 
     public ProviderApplication() {
         System.out.println(getClass().getName());
@@ -31,7 +39,7 @@ public class ProviderApplication implements InitializingBean {
     public String hello() {
         ProviderApplication bean = applicationContext.getBean(ProviderApplication.class);
         System.out.println(bean.getClass().getName());
-        return "hello";
+        return action.doAction("hi");
     }
 
     public static void main(String[] args) {
