@@ -28,6 +28,7 @@
         <module>kafka</module>
         <module>es</module>
         <module>redis</module>
+        <module>proxy</module>
     </modules>
 
 
