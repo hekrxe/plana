@@ -15,6 +15,9 @@
         <module>gts-api</module>
         <module>gts-provider-demo</module>
         <module>gts-consumer</module>
+        <module>gts-provider-account</module>
+        <module>gts-provider-order</module>
+        <module>gts-provider-storage</module>
     </modules>
 
 
