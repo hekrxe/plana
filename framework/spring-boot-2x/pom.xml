@@ -18,6 +18,8 @@
         <module>spring</module>
         <module>tts-method</module>
         <module>tts-sample</module>
+        <module>flow</module>
+        <module>spring-cache</module>
     </modules>
 
     <properties>

@@ -8,7 +8,7 @@ package com.hekrxe.plana.minor.design.adapter;
  */
 public class Adapter extends Adptee implements Target {
     /**
-     * 因为 Adptee  没有这个类
+     * 因为 Adptee  没有这个方法
      * 所以在这补上
      */
     @Override
