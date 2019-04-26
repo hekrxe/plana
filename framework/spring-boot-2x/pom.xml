@@ -19,6 +19,9 @@
         <module>tts-method</module>
         <module>tts-sample</module>
         <module>flow</module>
+        <module>fsm</module>
+        <module>hystrix</module>
+        <module>swagger</module>
     </modules>
 
     <properties>
