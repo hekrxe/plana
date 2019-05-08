@@ -279,12 +279,7 @@ public class Sort {
             array[i] = Math.abs(random.nextInt() % 100);
         }
         display(array);
-        int partition = partition(array, 0, array.length - 1);
-        display(array);
-        display(array, 0, partition);
-        display(array, partition + 1, array.length - 1);
-
-        quickSort(array);
+        heapSort(array);
         display(array);
     }
 }
