@@ -20,7 +20,6 @@
         <module>spring-boot-2x</module>
         <module>netty</module>
         <module>akka</module>
-        <module>sofa</module>
         <module>guava</module>
         <module>akka-remote</module>
         <module>akka-cluster</module>

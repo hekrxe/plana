@@ -23,6 +23,7 @@
         <module>hystrix</module>
         <module>swagger</module>
         <module>transaction</module>
+        <module>regular</module>
     </modules>
 
     <properties>
