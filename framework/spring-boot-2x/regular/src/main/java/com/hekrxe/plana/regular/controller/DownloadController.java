@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URLEncoder;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -29,27 +27,33 @@ public class DownloadController {
 
     private void doDownload(String path, HttpServletResponse response) {
         ZipOutputStream zos = null;
-        BufferedOutputStream bos = null;
         try {
-            response.setContentType("application/force-download;charset=utf-8");
-            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(path.trim(), "utf-8") + ".zip");
+            response.reset();
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("application/zip");
+            response.setHeader("Content-Disposition", "attachment; fileName=\"" + path.trim() + ".zip\"");
+
             zos = new ZipOutputStream(response.getOutputStream());
-            bos = new BufferedOutputStream(zos);
-            File file = new File(path);
-            zip(".", file, zos, bos);
-            bos.flush();
+            File file = new File("/home/oppo/" + path);
+            zip("", file, zos);
             zos.finish();
         } catch (Exception e) {
             e.getStackTrace();
         } finally {
-            IOUtils.closeQuietly(bos);
             IOUtils.closeQuietly(zos);
         }
     }
 
-    private static void zip(String parent, File file, ZipOutputStream zos, BufferedOutputStream bos) throws Exception {
+    private static void zip(String parent, File file, ZipOutputStream zos) throws Exception {
+        String child;
+        if (parent.length() == 0) {
+            child = file.getName();
+        } else {
+            child = parent + "/" + file.getName();
+        }
+
         if (file.isFile()) {
-            zos.putNextEntry(new ZipEntry(parent + "/" + file.getName()));
+            zos.putNextEntry(new ZipEntry(child));
             FileInputStream fileInputStream = new FileInputStream(file);
             BufferedInputStream bis = new BufferedInputStream(fileInputStream);
             int count;
@@ -59,14 +63,15 @@ public class DownloadController {
             }
             bis.close();
             fileInputStream.close();
-            bos.flush();
+            zos.closeEntry();
         } else if (file.isDirectory()) {
             File[] files = file.listFiles();
-            if (null != files) {
-                zos.putNextEntry(new ZipEntry(parent + "/" + file.getName() + "/"));
+            if (null != files && files.length > 0) {
                 for (File f : files) {
-                    zip(parent + "/" + file.getName(), f, zos, bos);
+                    zip(child, f, zos);
                 }
+            } else {
+                zos.putNextEntry(new ZipEntry(child + "/"));
             }
         }
     }
