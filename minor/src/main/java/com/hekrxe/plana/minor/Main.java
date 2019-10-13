@@ -1,13 +1,14 @@
 package com.hekrxe.plana.minor;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Created by hztanhuayou on 2017/11/13
  */
 public class Main {
     public static void main(String[] args) {
-        short a = 32767;
-        System.out.println(Integer.toBinaryString(a));
-        System.out.println(Integer.toBinaryString(~(1 << 14)));
-        System.out.println(a & (~(1 << 14)));
+        String str = "11你🔢";
+        System.out.println(str.length());
+        System.out.println(str.getBytes(StandardCharsets.UTF_8).length);
     }
 }
