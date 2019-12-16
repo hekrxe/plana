@@ -12,7 +12,7 @@
     <artifactId>akka-remote</artifactId>
 
     <properties>
-        <akka.version>2.5.13</akka.version>
+        <akka.version>2.6.1</akka.version>
     </properties>
 
     <dependencies>
